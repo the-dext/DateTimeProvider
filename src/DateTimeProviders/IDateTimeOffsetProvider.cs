@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-
-namespace DateTimeProviders
+﻿namespace DateTimeProviders
 {
+    using System;
+    using System.Globalization;
+
     public interface IDateTimeOffsetProvider
     {
         // Summary: Represents the greatest possible value of System.DateTimeOffset. This field is read-only.
