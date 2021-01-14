@@ -5,6 +5,39 @@
 
     public class DateTimeOffsetProvider : IDateTimeOffsetProvider
     {
+        protected Func<DateTimeOffset> NowFunc = () => DateTimeOffset.Now;
+
+        protected Func<DateTimeOffset> UtcNowFunc = () => DateTimeOffset.UtcNow;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateTimeOffsetProvider"/> class.
+        /// </summary>
+        /// <param name="nowFunc">
+        /// A replacement function to be used when Now is called. Pass null to use the default implementation.
+        /// </param>
+        /// <param name="utcNowFunc">
+        /// A replacement function to be used when UtcNow is called. Pass null to use the default implementation.
+        /// </param>
+        public DateTimeOffsetProvider(Func<DateTimeOffset> nowFunc = null, Func<DateTimeOffset> utcNowFunc = null)
+        {
+            if (nowFunc != null)
+            {
+                this.NowFunc = nowFunc;
+            }
+
+            if (utcNowFunc != null)
+            {
+                this.UtcNowFunc = utcNowFunc;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateTimeOffsetProvider"/> class.
+        /// </summary>
+        public DateTimeOffsetProvider()
+        {
+        }
+
         ///<inheritdoc/>
         public DateTimeOffset MaxValue
             => DateTimeOffset.MaxValue;
@@ -15,11 +48,11 @@
 
         ///<inheritdoc/>
         public DateTimeOffset Now
-            => DateTimeOffset.Now;
+            => this.NowFunc();
 
         ///<inheritdoc/>
         public DateTimeOffset UtcNow
-            => DateTimeOffset.UtcNow;
+            => this.UtcNowFunc();
 
         ///<inheritdoc/>
         public DateTimeOffset FromFileTime(long fileTime)

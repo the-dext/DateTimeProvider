@@ -5,6 +5,39 @@
 
     public class DateTimeProvider : IDateTimeProvider
     {
+        protected Func<DateTime> NowFunc = () => DateTime.Now;
+
+        protected Func<DateTime> UtcNowFunc = () => DateTime.UtcNow;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateTimeProvider"/> class.
+        /// </summary>
+        /// <param name="nowFunc">
+        /// A replacement function to be used when Now is called. Pass null to use the default implementation.
+        /// </param>
+        /// <param name="utcNowFunc">
+        /// A replacement function to be used when UtcNow is called. Pass null to use the default implementation.
+        /// </param>
+        public DateTimeProvider(Func<DateTime> nowFunc = null, Func<DateTime> utcNowFunc = null)
+        {
+            if (nowFunc != null)
+            {
+                this.NowFunc = nowFunc;
+            }
+
+            if (utcNowFunc != null)
+            {
+                this.UtcNowFunc = utcNowFunc;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateTimeProvider"/> class.
+        /// </summary>
+        public DateTimeProvider()
+        {
+        }
+
         ///<inheritdoc/>
         public DateTime MaxValue
             => DateTime.MaxValue;
@@ -15,7 +48,7 @@
 
         ///<inheritdoc/>
         public DateTime Now
-            => DateTime.Now;
+            => this.NowFunc();
 
         ///<inheritdoc/>
         public DateTime Today
@@ -23,7 +56,7 @@
 
         ///<inheritdoc/>
         public DateTime UtcNow
-            => DateTime.UtcNow;
+            => this.UtcNowFunc();
 
         ///<inheritdoc/>
         public int DaysInMonth(int year, int month)

@@ -125,6 +125,38 @@
         }
 
         [Fact]
+        public void Setting_Behaviour_Of_Now_Calls_Override()
+        {
+            // as close as I could figure out a test
+            bool overrideCalled = false;
+            Func<DateTimeOffset> nowFunc = () => { overrideCalled = true; return DateTimeOffset.Now; };
+
+            var sut = new DateTimeOffsetProvider(nowFunc, null);
+
+            _ = sut.UtcNow;
+            overrideCalled.Should().BeFalse();
+
+            _ = sut.Now;
+            overrideCalled.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Setting_Behaviour_Of_UtcNow_Calls_Override()
+        {
+            // as close as I could figure out a test
+            bool overrideCalled = false;
+            Func<DateTimeOffset> nowFunc = () => { overrideCalled = true; return DateTimeOffset.Now; };
+
+            var sut = new DateTimeOffsetProvider(null, nowFunc);
+
+            _ = sut.Now;
+            overrideCalled.Should().BeFalse();
+
+            _ = sut.UtcNow;
+            overrideCalled.Should().BeTrue();
+        }
+
+        [Fact]
         public void TryParse_IsImplemented()
         {
             DateTime expected;

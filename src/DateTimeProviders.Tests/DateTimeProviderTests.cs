@@ -156,6 +156,38 @@ namespace DateTimeProviders.Tests
         }
 
         [Fact]
+        public void Setting_Behaviour_Of_Now_Calls_Override()
+        {
+            // as close as I could figure out a test
+            bool overrideCalled = false;
+            Func<DateTime> nowFunc = () => { overrideCalled = true; return DateTime.Now; };
+
+            var sut = new DateTimeProvider(nowFunc, null);
+
+            _ = sut.UtcNow;
+            overrideCalled.Should().BeFalse();
+
+            _ = sut.Now;
+            overrideCalled.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Setting_Behaviour_Of_UtcNow_Calls_Override()
+        {
+            // as close as I could figure out a test
+            bool overrideCalled = false;
+            Func<DateTime> nowFunc = () => { overrideCalled = true; return DateTime.Now; };
+
+            var sut = new DateTimeProvider(null, nowFunc);
+
+            _ = sut.Now;
+            overrideCalled.Should().BeFalse();
+
+            _ = sut.UtcNow;
+            overrideCalled.Should().BeTrue();
+        }
+
+        [Fact]
         public void SpecifyKind_IsImplemented()
         {
             var sut = new DateTimeProvider().SpecifyKind(new DateTime(2020, 11, 1), DateTimeKind.Local);
