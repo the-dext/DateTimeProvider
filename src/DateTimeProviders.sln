@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeProviders", "DateTimeProviders\DateTimeProviders.csproj", "{002D63E1-D9BA-476D-83A9-D2C5723DD53F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeProviders.Tests", "DateTimeProviders.Tests\DateTimeProviders.Tests.csproj", "{51A850F1-5E05-4638-B0E3-C211AED9DF67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeProviders.Tests", "DateTimeProviders.Tests\DateTimeProviders.Tests.csproj", "{51A850F1-5E05-4638-B0E3-C211AED9DF67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C2E8A86-D18B-467F-A472-54989CAD4A2C}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
