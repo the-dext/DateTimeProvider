@@ -5,6 +5,17 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>.</Company>
     <Authors>Chris Dexter</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/the-dext/DateTimeProviders</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/the-dext/DateTimeProviders</RepositoryUrl>
+    <Description>DateTimeProviders aims to solve the problems around testing code that has dependencies on the DateTime/DateTimeOffset structs, and also enforcing consistent use of Now and UtcNow.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 # DateTimeProviders
 
-DateTimeProviders aims to solve the problems around testing code that has dependencies on the DateTime/DateTimeOffset structs, and accidentally mixing up use of Now and UtcNow methods.
+DateTimeProviders aims to solve the problems around testing code that has dependencies on the DateTime/DateTimeOffset structs, and also enforcing consistent use of Now and UtcNow.  
 It does this in two ways...
 
 * Write Testable Code  
