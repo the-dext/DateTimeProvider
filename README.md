@@ -36,7 +36,7 @@ Overriding Now so that it returns the same value as UtcNow
 
     `var dateTimeProvider = new DateTimeOffsetProvider(()=>DateTime.UtcNow, null);`
 
-Overring Now so that it throws an exeption
+Overriding Now so that it throws an exeption
 
     `new DateTimeOffsetProvider(() => throw new NotSupportedException("You should call UtcNow"), null);`
 
